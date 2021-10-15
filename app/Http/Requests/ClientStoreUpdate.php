@@ -29,6 +29,7 @@ class ClientStoreUpdate extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'email', "unique:clients,email,{$id},id"],
             'image' => ['required', 'image'],
+            'type_client_id' => ['required']
         ];
     }
 }

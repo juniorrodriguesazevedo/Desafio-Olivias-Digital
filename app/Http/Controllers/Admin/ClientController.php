@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Client;
+use Illuminate\Http\Request;
 use App\Mail\ClientStoreMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientStoreUpdate;
+use App\Http\Controllers\Admin\LogMessageController;
 
 class ClientController extends Controller
 {
@@ -56,7 +58,12 @@ class ClientController extends Controller
             Mail::to($request->email)->send(new ClientStoreMail($client));
         }
 
-        return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
+        try {
+            LogMessageController::log($request, 'info');
+            return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
+        } catch (\Exception $e) {
+            LogMessageController::log($request, 'error', $e);
+        }
     }
 
     /**
@@ -110,7 +117,12 @@ class ClientController extends Controller
 
         $client->update($data);
 
-        return redirect()->route('client.index')->with('success', 'Atualizado com sucesso!');
+        try {
+            LogMessageController::log($request, 'info');
+             return redirect()->route('client.index')->with('success', 'Atualizado com sucesso!');
+        } catch (\Exception $e) {
+            LogMessageController::log($request, 'error', $e);
+        }
     }
 
     /**
@@ -119,7 +131,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $client = Client::find($id);
 
@@ -128,7 +140,12 @@ class ClientController extends Controller
         }
 
         $client->delete();
-
-        return redirect()->route('client.index')->with('success', 'Deletado com sucesso!');
+        
+        try {
+            LogMessageController::log($request, 'info');
+            return redirect()->route('client.index')->with('success', 'Deletado com sucesso!');
+        } catch (\Exception $e) {
+            LogMessageController::log($request, 'error', $e);
+        }
     }
 }
