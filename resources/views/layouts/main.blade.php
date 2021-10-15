@@ -17,6 +17,9 @@
         <nav class="nav">
           <a class="nav-link text-white" href="{{ route('client.index') }}">Inicio</a>
           <a class="nav-link text-white" href="{{ route('client.create') }}">Cadastrar Cliente</a>
+          <a class="nav-link text-white" href="{{ route('phone.index') }}">Telefones</a>
+          <a class="nav-link text-white" href="{{ route('phone.create') }}">Vincular Telefone</a>
+          <a class="nav-link text-white" href="{{ route('client.api') }}" target="_blank">API</a>
         </nav>
       </div>
     </nav>
