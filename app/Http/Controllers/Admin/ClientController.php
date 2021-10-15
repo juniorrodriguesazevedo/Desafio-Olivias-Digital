@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Client;
-use Illuminate\Http\Request;
+use App\Mail\ClientStoreMail;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ClientStoreUpdate;
 
 class ClientController extends Controller
 {
@@ -34,10 +36,10 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ClientStoreUpdate  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientStoreUpdate $request)
     {
         $data = $request->all();
 
@@ -48,9 +50,13 @@ class ClientController extends Controller
             $data['image'] = $imagePath;
         }
 
-        Client::create($data);
+        $client = Client::create($data);
+        
+        if ($request->email) {
+            Mail::to($request->email)->send(new ClientStoreMail($client));
+        }
 
-        return redirect()->route('client.index');
+        return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
     }
 
     /**
@@ -82,11 +88,11 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ClientStoreUpdate  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientStoreUpdate $request, $id)
     {
         $client = Client::find($id);
         $data = $request->all();
@@ -104,7 +110,7 @@ class ClientController extends Controller
 
         $client->update($data);
 
-        return redirect()->route('client.index');
+        return redirect()->route('client.index')->with('success', 'Atualizado com sucesso!');
     }
 
     /**
@@ -123,6 +129,6 @@ class ClientController extends Controller
 
         $client->delete();
 
-        return redirect()->route('client.index');
+        return redirect()->route('client.index')->with('success', 'Deletado com sucesso!');
     }
 }

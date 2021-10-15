@@ -11,6 +11,15 @@
     <title>@yield('title')</title>
   </head>
   <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <nav class="nav">
+          <a class="nav-link text-white" href="{{ route('client.index') }}">Inicio</a>
+          <a class="nav-link text-white" href="{{ route('client.create') }}">Cadastrar Cliente</a>
+        </nav>
+      </div>
+    </nav>
 
     <div class="container p-4">
       @yield('content')

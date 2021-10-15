@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Mail;
+
+use App\Models\Client;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ClientStoreMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $client;
+    public $url;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+        $this->url = 'http://127.0.0.1:8000/client';
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->markdown('emails.client.store')->subject('Seja Bem-vindo!');
+    }
+}

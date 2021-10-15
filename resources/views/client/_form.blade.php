@@ -12,6 +12,7 @@
         {!!Form::file('image', 'Imagem')->required()!!}
     </div>
     <div class="col">
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a class="btn btn-primary" href="{{ route('client.index') }}">Volta</a>
     </div>
 </div>

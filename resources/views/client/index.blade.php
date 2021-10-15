@@ -6,12 +6,14 @@
     
 <h1>Clientes</h1>
 
+@include('includes.alert')
+
 <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
-        <th scope="col">Opções</th>
+        <th scope="col" style="width: 18%">Opções</th>
       </tr>
     </thead>
     <tbody>
