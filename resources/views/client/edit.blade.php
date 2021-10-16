@@ -1,13 +1,21 @@
-@extends('layouts.main')
-
-@section('title', 'Cliente Editar')
+@extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">Editar Cliente: {{ $data->name }}</div>
 
-<h1>Editar</h1>
-    
-{!!Form::open()->fill($data)->multipart()->route('client.update', [$data->id])->method('put')!!}
-    @include('client._form')
-{!!Form::close()!!}
+                <div class="card-body">
+                    @include('includes.alert')  
 
+                    {!!Form::open()->fill($data)->multipart()->route('client.update', [$data->id])->method('put')!!}
+                        @include('client._form')
+                    {!!Form::close()!!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
