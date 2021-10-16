@@ -1,5 +1,5 @@
 @component('mail::message')
-# Olá, {{ $client->name }}.
+# Olá, {{ $user->name }}.
 
 <img src="https://i.imgur.com/RauoZFx.png" alt="Boas Vindas pra você" style="width: 40%">
 

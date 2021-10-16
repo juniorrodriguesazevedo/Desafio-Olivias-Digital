@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Mail\ClientStoreMail;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
@@ -74,9 +73,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         
-        Mail::to(Auth::user())->send(new ClientStoreMail($data));
+        Mail::to($data['email'])->send(new ClientStoreMail($data));
 
         return $data;
+
         /*
         return User::create([
             'name' => $data['name'],
