@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Editar Cliente: {{ $data->name }}</div>
+                <div class="card-header"><b>Editando Cliente:</b> {{ $data->name }}</div>
 
                 <div class="card-body">
                     @include('includes.alert')  

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Clientes</div>
+                <div class="card-header">Meus Clientes Cadastrados</div>
 
                 <div class="card-body">
                     @include('includes.alert')  
