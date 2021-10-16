@@ -1,6 +1,6 @@
 <div>
     <div class="col-md-4">
-        {!!Form::select('client_id', 'Client')->options($client->prepend('Selecione Cliente', ''))!!}
+        {!!Form::select('client_id', 'Cliente')->options($client->prepend('Selecione Cliente', ''))!!}
     </div>
     <div class="col-md-4">
         {!!Form::select('phone_id', 'Telefone')->options($phone->prepend('Selecione Telefone', ''), 'phone')!!}
