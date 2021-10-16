@@ -15,7 +15,7 @@
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Nome</th>
-                          <th scope="col">Tipo de Pessoa</th>
+                          <th scope="col">Tipo</th>
                           <th scope="col" style="width: 22%">Opções</th>
                         </tr>
                       </thead>
