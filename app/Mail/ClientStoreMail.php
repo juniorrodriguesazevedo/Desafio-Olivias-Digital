@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Models\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,7 +11,7 @@ class ClientStoreMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $client;
     public $url;
 
     /**
@@ -19,9 +19,9 @@ class ClientStoreMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(Client $client)
     {
-        $this->user = $user;
+        $this->client = $client;
         $this->url = route('client.index');
     }
 

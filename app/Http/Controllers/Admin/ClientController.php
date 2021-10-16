@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Mail\ClientStoreMail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientStoreUpdate;
 use App\Http\Controllers\Admin\LogMessageController;
@@ -50,8 +52,12 @@ class ClientController extends Controller
             $data['image'] = $imagePath;
         }
 
-        Client::create($data);
+        $client = Client::create($data);
         
+        if ($request->email) {
+            Mail::to($request->email)->send(new ClientStoreMail($client));
+        }
+
         try {
             LogMessageController::log($request, 'info');
             return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
