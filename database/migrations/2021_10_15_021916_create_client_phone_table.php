@@ -15,7 +15,7 @@ class CreateClientPhoneTable extends Migration
     {
         Schema::create('client_phone', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained();
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('phone_id')->constrained();
             $table->timestamps();
         });
