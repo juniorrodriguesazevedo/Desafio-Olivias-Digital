@@ -27,7 +27,7 @@
                 <a class="navbar-brand" href="{{ route('client.create') }}">Cadastrar Cliente</a>
                 <a class="navbar-brand" href="{{ route('phone.index') }}">Telefones</a>
                 <a class="navbar-brand" href="{{ route('phone.create') }}">Vincular Telefone</a>
-                <a class="navbar-brand" href="{{ route('client.api') }}" target="_blank">API</a>
+                <a class="navbar-brand" href="{{ route('client.api') }}">API</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

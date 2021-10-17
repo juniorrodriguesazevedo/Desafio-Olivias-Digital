@@ -14,10 +14,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/', function () {
         return redirect()->route('client.index');
     })->name('home');
+
+    Route::get('client/authorization/api', function() {
+        return view('client.api');
+    })->name('client.api');
 });
 
-
-
-
 Auth::routes();
-
