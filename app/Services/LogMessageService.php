@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Services;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
-class LogMessageController extends Controller
+class LogMessageService 
 {
     public static function log($req, $level, $exception = null)
     {

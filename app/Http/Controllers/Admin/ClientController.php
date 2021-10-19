@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Mail\ClientStoreMail;
+use App\Services\LogMessageService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientStoreUpdate;
-use App\Http\Controllers\Admin\LogMessageController;
 
 class ClientController extends Controller
 {
@@ -59,10 +59,10 @@ class ClientController extends Controller
         }
 
         try {
-            LogMessageController::log($request, 'info');
+            LogMessageService::log($request, 'info');
             return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
         } catch (\Exception $e) {
-            LogMessageController::log($request, 'error', $e);
+            LogMessageService::log($request, 'error', $e);
         }
     }
 
@@ -118,10 +118,10 @@ class ClientController extends Controller
         $client->update($data);
 
         try {
-            LogMessageController::log($request, 'info');
+            LogMessageService::log($request, 'info');
              return redirect()->route('client.index')->with('success', 'Atualizado com sucesso!');
         } catch (\Exception $e) {
-            LogMessageController::log($request, 'error', $e);
+            LogMessageService::log($request, 'error', $e);
         }
     }
 
@@ -142,10 +142,10 @@ class ClientController extends Controller
         $client->delete();
         
         try {
-            LogMessageController::log($request, 'info');
+            LogMessageService::log($request, 'info');
             return redirect()->route('client.index')->with('success', 'Deletado com sucesso!');
         } catch (\Exception $e) {
-            LogMessageController::log($request, 'error', $e);
+            LogMessageService::log($request, 'error', $e);
         }
     }
 }
