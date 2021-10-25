@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data = Client::paginate(10);
+        $data = Client::with('phones')->paginate(10);
 
         return view('client.index', compact('data'));
     }
