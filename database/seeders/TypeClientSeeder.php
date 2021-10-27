@@ -14,11 +14,11 @@ class TypeClientSeeder extends Seeder
      */
     public function run()
     {
-        TypeClient::create([
+        TypeClient::firstOrCreate([
             'type_client' => 'Pessoa Física',
         ]);
 
-        TypeClient::create([
+        TypeClient::firstOrCreate([
             'type_client' => 'Pessoa Jurídica'
         ]);
     }

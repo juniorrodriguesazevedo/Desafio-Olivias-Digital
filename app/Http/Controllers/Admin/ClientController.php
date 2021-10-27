@@ -74,7 +74,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $data = Client::find($id);
+        $data = Client::findOrFail($id);
         
         return view('client.show', compact('data'));
     }
@@ -87,7 +87,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $data = Client::find($id);
+        $data = Client::findOrFail($id);
         
         return view('client.edit', compact('data'));
     }
@@ -101,7 +101,7 @@ class ClientController extends Controller
      */
     public function update(ClientStoreUpdate $request, $id)
     {
-        $client = Client::find($id);
+        $client = Client::findOrFail($id);
         $data = $request->all();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -133,7 +133,7 @@ class ClientController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $client = Client::find($id);
+        $client = Client::findOrFail($id);
 
         if ($client->image && Storage::exists($client->image)) {
             Storage::delete($client->image);
