@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-use App\Mail\ClientStoreMail;
 use App\Services\LogMessageService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClientStoreUpdate;
 
 class ClientController extends Controller
