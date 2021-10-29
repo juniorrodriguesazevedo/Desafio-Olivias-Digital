@@ -43,21 +43,8 @@ class ClientController extends Controller
      */
     public function store(ClientStoreUpdate $request)
     {
-        $data = $request->all();
-
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            
-            $imagePath = $request->file('image')->store('public');
-
-            $data['image'] = $imagePath;
-        }
-
-        $client = Client::create($data);
+        Client::create($request->all());
         
-        if ($request->email) {
-            Mail::to($request->email)->send(new ClientStoreMail($client));
-        }
-
         try {
             LogMessageService::log($request, 'info');
             return redirect()->route('client.index')->with('success', 'Cadastrado com sucesso!');
@@ -102,20 +89,8 @@ class ClientController extends Controller
     public function update(ClientStoreUpdate $request, $id)
     {
         $client = Client::findOrFail($id);
-        $data = $request->all();
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            
-            if ($client->image && Storage::exists($client->image)) {
-                Storage::delete($client->image);
-            }
-
-            $imagePath = $request->file('image')->store('public');
-
-            $data['image'] = $imagePath;
-        }
-
-        $client->update($data);
+        $client->update($request->all());
 
         try {
             LogMessageService::log($request, 'info');
@@ -134,10 +109,6 @@ class ClientController extends Controller
     public function destroy(Request $request, $id)
     {
         $client = Client::findOrFail($id);
-
-        if ($client->image && Storage::exists($client->image)) {
-            Storage::delete($client->image);
-        }
 
         $client->delete();
         
